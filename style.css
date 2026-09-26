@@ -1,0 +1,513 @@
+/* =========================
+   General page styles
+   ========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            #ffe3ed,
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at bottom right,
+            #ffdce8,
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #fff5f8,
+            #ffeaf1
+        );
+
+    color: #542536;
+}
+
+
+/* =========================
+   Main card
+   ========================= */
+
+.card {
+    width: 100%;
+    max-width: 520px;
+
+    padding: 45px 35px;
+
+    background: rgba(255, 255, 255, 0.95);
+
+    border: 1px solid #f3d2df;
+    border-radius: 24px;
+
+    box-shadow:
+        0 20px 50px rgba(180, 65, 105, 0.12);
+
+    text-align: center;
+
+    animation: appear 0.5s ease;
+}
+
+
+/* =========================
+   Step indicator
+   ========================= */
+
+.step {
+    margin-bottom: 20px;
+
+    color: #bd7f96;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+/* =========================
+   Emoji
+   ========================= */
+
+.emoji {
+    margin-bottom: 15px;
+
+    font-size: 42px;
+}
+
+
+/* =========================
+   Headings
+   ========================= */
+
+h1 {
+    margin: 0 0 30px;
+
+    color: #653648;
+
+    font-size: 29px;
+    line-height: 1.25;
+}
+
+
+/* =========================
+   Buttons
+   ========================= */
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+
+    position: relative;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 130px;
+
+    padding: 14px 25px;
+
+    border: none;
+    border-radius: 14px;
+
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
+}
+
+
+/* Yes button */
+
+.yes-btn,
+.next-btn {
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e95b8b,
+            #ce376d
+        );
+
+    box-shadow:
+        0 8px 20px rgba(210, 55, 108, 0.2);
+}
+
+.yes-btn:hover,
+.next-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 25px rgba(210, 55, 108, 0.28);
+}
+
+
+/* No button */
+
+.no-btn {
+    color: #653648;
+
+    background: #fffafd;
+
+    border: 1px solid #efc5d4;
+
+    transition:
+        transform 0.2s ease,
+        opacity 0.4s ease;
+}
+
+
+/* Disabled button */
+
+.btn:disabled {
+    opacity: 0.45;
+
+    cursor: not-allowed;
+
+    box-shadow: none;
+}
+
+
+/* =========================
+   Labels
+   ========================= */
+
+.label {
+    display: block;
+
+    margin: 0 0 10px;
+
+    color: #744255;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    text-align: left;
+}
+
+
+/* =========================
+   Date input
+   ========================= */
+
+.date-input {
+    width: 100%;
+
+    padding: 14px 16px;
+
+    margin-bottom: 25px;
+
+    border: 1px solid #efc5d4;
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fffafd,
+            #fff3f7
+        );
+
+    color: #542536;
+
+    font-size: 16px;
+    font-family: inherit;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 4px 12px rgba(210, 70, 115, 0.06);
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.date-input:hover {
+    border-color: #df6f98;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff8fb,
+            #ffeef4
+        );
+}
+
+.date-input:focus {
+    outline: none;
+
+    border-color: #d94f7e;
+
+    box-shadow:
+        0 0 0 4px rgba(217, 79, 126, 0.12);
+}
+
+.date-input::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+
+    opacity: 0.75;
+
+    padding: 4px;
+
+    border-radius: 6px;
+
+    transition: 0.2s ease;
+}
+
+.date-input::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
+
+    background:
+        rgba(217, 79, 126, 0.1);
+}
+
+
+/* =========================
+   Time selection
+   ========================= */
+
+.time-options {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 10px;
+
+    margin-bottom: 25px;
+}
+
+.time-btn {
+    padding: 14px 10px;
+
+    border: 1px solid #efc5d4;
+    border-radius: 12px;
+
+    background: #fffafd;
+
+    color: #653648;
+
+    font-family: inherit;
+    font-size: 15px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.time-btn:hover {
+    border-color: #df6f98;
+}
+
+.time-btn.selected {
+    border-color: #d94f7e;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e95b8b,
+            #ce376d
+        );
+
+    color: white;
+
+    box-shadow:
+        0 6px 15px rgba(210, 55, 108, 0.18);
+}
+
+
+/* =========================
+   Activity selection
+   ========================= */
+
+.activity-options {
+    display: grid;
+
+    gap: 12px;
+
+    margin-bottom: 25px;
+}
+
+.activity-btn {
+    width: 100%;
+
+    padding: 16px;
+
+    border: 1px solid #efc5d4;
+    border-radius: 12px;
+
+    background: #fffafd;
+
+    color: #653648;
+
+    font-family: inherit;
+    font-size: 16px;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.activity-btn:hover {
+    border-color: #df6f98;
+}
+
+.activity-btn.selected {
+    border-color: #d94f7e;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e95b8b,
+            #ce376d
+        );
+
+    color: white;
+
+    box-shadow:
+        0 6px 15px rgba(210, 55, 108, 0.18);
+}
+
+
+/* =========================
+   Result page
+   ========================= */
+
+.result-card h1 {
+    margin-bottom: 20px;
+}
+
+.result-text {
+    margin-bottom: 25px;
+
+    color: #744255;
+
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.summary {
+    display: grid;
+
+    gap: 12px;
+
+    margin: 25px 0;
+}
+
+.summary div {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 15px;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff5f8,
+            #ffeaf1
+        );
+
+    border: 1px solid #f5d3df;
+
+    text-align: left;
+}
+
+.summary span {
+    font-size: 22px;
+}
+
+.summary strong {
+    color: #633347;
+}
+
+.small-text {
+    color: #bd7f96;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   Animation
+   ========================= */
+
+@keyframes appear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =========================
+   Mobile layout
+   ========================= */
+
+@media (max-width: 500px) {
+
+    .card {
+        padding: 35px 22px;
+    }
+
+    h1 {
+        font-size: 25px;
+    }
+
+    .buttons {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .time-options {
+        grid-template-columns: 1fr;
+    }
+}

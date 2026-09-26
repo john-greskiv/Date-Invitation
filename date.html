@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>When? ❤️</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<main class="card">
+
+    <div class="step">2 / 4</div>
+
+    <div class="emoji">📅</div>
+
+    <h1>When are we going?</h1>
+
+    <label class="label" for="dateInput">
+        Choose a date
+    </label>
+
+    <input
+        type="date"
+        id="dateInput"
+        class="date-input"
+    >
+
+    <label class="label">
+        Choose a time
+    </label>
+
+    <div class="time-options">
+
+        <button
+            type="button"
+            class="time-btn"
+            data-time="Morning"
+        >
+            Morning
+        </button>
+
+        <button
+            type="button"
+            class="time-btn"
+            data-time="Afternoon"
+        >
+            Afternoon
+        </button>
+
+        <button
+            type="button"
+            class="time-btn"
+            data-time="Evening"
+        >
+            Evening
+        </button>
+
+    </div>
+
+    <button
+        id="dateNext"
+        class="btn next-btn"
+        disabled
+    >
+        Next →
+    </button>
+
+</main>
+
+
+<script>
+
+// Get page elements.
+const dateInput = document.getElementById("dateInput");
+const timeButtons = document.querySelectorAll(".time-btn");
+const nextButton = document.getElementById("dateNext");
+
+
+// Get today's date in YYYY-MM-DD format.
+const now = new Date();
+
+const year = now.getFullYear();
+
+const month = String(
+    now.getMonth() + 1
+).padStart(2, "0");
+
+const day = String(
+    now.getDate()
+).padStart(2, "0");
+
+const today = `${year}-${month}-${day}`;
+
+
+// Prevent selecting a date in the past.
+dateInput.min = today;
+
+
+// Handle time selection.
+timeButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        timeButtons.forEach(item => {
+            item.classList.remove("selected");
+        });
+
+        button.classList.add("selected");
+
+        sessionStorage.setItem(
+            "selectedTime",
+            button.dataset.time
+        );
+
+        checkForm();
+    });
+
+});
+
+
+// Handle date selection.
+dateInput.addEventListener("change", () => {
+
+    // Extra protection against selecting a past date.
+    if (dateInput.value < today) {
+
+        dateInput.value = "";
+
+        sessionStorage.removeItem(
+            "selectedDate"
+        );
+
+        checkForm();
+
+        return;
+    }
+
+    sessionStorage.setItem(
+        "selectedDate",
+        dateInput.value
+    );
+
+    checkForm();
+});
+
+
+// Enable the Next button only when both
+// date and time have been selected.
+function checkForm() {
+
+    const date = dateInput.value;
+
+    const time =
+        sessionStorage.getItem("selectedTime");
+
+    nextButton.disabled =
+        !(date && time);
+}
+
+
+// Go to the activity selection page.
+nextButton.addEventListener("click", () => {
+
+    if (nextButton.disabled) {
+        return;
+    }
+
+    window.location.href =
+        "activity.html";
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Date ❤️</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<main class="card result-card">
+
+    <div class="step">4 / 4</div>
+
+    <div class="emoji">❤️</div>
+
+    <h1>Congratulations ❤️</h1>
+
+    <p class="result-text">
+        Our date is officially planned!
+    </p>
+
+    <div class="summary">
+
+        <div>
+            <span>📅</span>
+            <strong id="summaryDate"></strong>
+        </div>
+
+        <div>
+            <span>🕐</span>
+            <strong id="summaryTime"></strong>
+        </div>
+
+        <div>
+            <span>✨</span>
+            <strong id="summaryActivity"></strong>
+        </div>
+
+    </div>
+
+    <p class="small-text">
+        The date is officially planned 😉
+    </p>
+
+</main>
+
+
+<script>
+
+// Get the selected values from the previous steps.
+const date =
+    sessionStorage.getItem("selectedDate");
+
+const time =
+    sessionStorage.getItem("selectedTime");
+
+const activity =
+    sessionStorage.getItem("selectedActivity");
+
+
+// Prevent direct access to the final page
+// without completing the previous steps.
+if (!date || !time || !activity) {
+
+    window.location.href = "index.html";
+
+} else {
+
+    // Convert the selected date into a readable format.
+    const dateObject =
+        new Date(date + "T00:00:00");
+
+    const formattedDate =
+        dateObject.toLocaleDateString(
+            "en-US",
+            {
+                day: "numeric",
+                month: "long",
+                year: "numeric"
+            }
+        );
+
+
+    // Display the selected date.
+    document.getElementById(
+        "summaryDate"
+    ).textContent = formattedDate;
+
+
+    // Display the selected time.
+    document.getElementById(
+        "summaryTime"
+    ).textContent = time;
+
+
+    // Display the selected activity.
+    document.getElementById(
+        "summaryActivity"
+    ).textContent = activity;
+
+
+    // Send the selected information to PHP.
+    // The PHP script stores it in dates.csv.
+    const formData = new FormData();
+
+    formData.append("date", date);
+    formData.append("time", time);
+    formData.append("activity", activity);
+
+
+    fetch("save.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => {
+
+        if (!response.ok) {
+            throw new Error(
+                "Could not save the result"
+            );
+        }
+
+        return response.text();
+
+    })
+    .then(data => {
+
+        console.log(
+            "Result saved:",
+            data
+        );
+
+    })
+    .catch(error => {
+
+        console.error(
+            "Could not save the result:",
+            error
+        );
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>

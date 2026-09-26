@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Little Question ❤️</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<main class="card">
+
+    <div class="step">1 / 4</div>
+
+    <div class="emoji">💌</div>
+
+    <h1>Would you like to go on a date with me?</h1>
+
+    <div class="buttons">
+
+        <a href="date.html" class="btn yes-btn">
+            Yes ❤️
+        </a>
+
+        <button id="noButton" class="btn no-btn">
+            No
+        </button>
+
+    </div>
+
+</main>
+
+
+<script>
+
+// The "No" button escapes the cursor and eventually disappears.
+
+const noButton = document.getElementById("noButton");
+
+let attempts = 0;
+
+function escapeButton(event) {
+
+    event.preventDefault();
+
+    attempts++;
+
+    // After several attempts, hide the button completely.
+    if (attempts >= 10) {
+
+        noButton.style.opacity = "0";
+        noButton.style.transform = "scale(0)";
+
+        setTimeout(() => {
+            noButton.style.display = "none";
+        }, 400);
+
+        return;
+    }
+
+    // Move the button to a random position.
+    const x = (Math.random() - 0.5) * 300;
+    const y = (Math.random() - 0.5) * 200;
+
+    // Make the button slightly smaller after every attempt.
+    const scale = Math.max(0.35, 1 - attempts * 0.07);
+
+    noButton.style.transform =
+        `translate(${x}px, ${y}px) scale(${scale})`;
+}
+
+noButton.addEventListener("mouseenter", escapeButton);
+
+noButton.addEventListener(
+    "touchstart",
+    escapeButton,
+    { passive: false }
+);
+
+noButton.addEventListener("click", escapeButton);
+
+</script>
+
+</body>
+</html>

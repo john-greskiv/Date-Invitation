@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Shall We Do? ❤️</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<main class="card">
+
+    <div class="step">3 / 4</div>
+
+    <div class="emoji">✨</div>
+
+    <h1>What shall we do?</h1>
+
+    <div class="activity-options">
+
+        <button
+            class="activity-btn"
+            data-activity="Going to the cinema"
+        >
+            🎬 Going to the cinema
+        </button>
+
+        <button
+            class="activity-btn"
+            data-activity="Going to a restaurant"
+        >
+            🍽️ Going to a restaurant
+        </button>
+
+        <button
+            class="activity-btn"
+            data-activity="Couples massage"
+        >
+            💆 Couples massage
+        </button>
+
+        <button
+            class="activity-btn"
+            data-activity="Go-karting"
+        >
+            🏎️ Go-karting
+        </button>
+
+        <button
+            class="activity-btn"
+            data-activity="Tennis"
+        >
+            🎾 Tennis
+        </button>
+
+        <button
+            class="activity-btn"
+            data-activity="Bowling"
+        >
+            🎳 Bowling
+        </button>
+
+        <button
+            class="activity-btn"
+            data-activity="Billiards"
+        >
+            🎱 Billiards
+        </button>
+
+        <button
+            class="activity-btn"
+            data-activity="Going to a museum"
+        >
+            🏛️ Going to a museum
+        </button>
+
+    </div>
+
+    <button
+        id="activityNext"
+        class="btn next-btn"
+        disabled
+    >
+        Next →
+    </button>
+
+</main>
+
+
+<script>
+
+// Get all activity buttons and the Next button.
+const activityButtons =
+    document.querySelectorAll(".activity-btn");
+
+const nextButton =
+    document.getElementById("activityNext");
+
+
+// Handle activity selection.
+activityButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        // Remove the selected state from all buttons.
+        activityButtons.forEach(item => {
+            item.classList.remove("selected");
+        });
+
+        // Highlight the selected activity.
+        button.classList.add("selected");
+
+        // Store the selected activity.
+        sessionStorage.setItem(
+            "selectedActivity",
+            button.dataset.activity
+        );
+
+        // Enable the Next button.
+        nextButton.disabled = false;
+    });
+
+});
+
+
+// Go to the final page.
+nextButton.addEventListener("click", () => {
+
+    if (nextButton.disabled) {
+        return;
+    }
+
+    window.location.href =
+        "result.html";
+});
+
+</script>
+
+</body>
+</html>
